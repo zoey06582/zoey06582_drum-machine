@@ -1,0 +1,465 @@
+body {
+    background: #ffffff;
+    color: #0f172a;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Pattern Controls Styling */
+#pattern-controls {
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.pattern-numbers {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    margin-bottom: 0;
+}
+
+.pattern-number {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    background: #fafafa;
+    color: #111827;
+    border-radius: 4px;
+    border: 1px solid #e5e7eb;
+    font-size: 0.75em;
+    position: relative;
+}
+
+/* TR-style grouping every 4 */
+.pattern-number:nth-child(4n) {
+    margin-right: 6px;
+}
+
+.pattern-number.current {
+    background: #fef3c7;
+    color: #111827;
+    border-color: #f59e0b;
+    box-shadow: inset 0 0 0 2px #f59e0b;
+}
+
+/* LED indicator on pattern buttons */
+.pattern-number::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 2px;
+    background: #d1d5db;
+}
+
+.pattern-number.current::before {
+    background: #f59e0b;
+}
+
+.chain-mode .pattern-number {
+    position: relative;
+}
+
+.chain-mode .pattern-number:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    right: -12px;
+    color: #9ca3af;
+}
+
+#chain-btn {
+    background: transparent;
+    color: #111827;
+    border: 1px solid #e5e7eb;
+    padding: 10px 16px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 12px;
+}
+
+#chain-btn:hover {
+    background: #f3f4f6;
+}
+
+.pattern-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.pattern-selector button {
+    background: transparent;
+    color: #111827;
+    border: 1px solid #e5e7eb;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+.pattern-selector span {
+    margin: 0 20px;
+    font-size: 1.1em;
+    min-width: 120px;
+}
+
+.pattern-actions {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+.pattern-actions button {
+    background: transparent;
+    color: #111827;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.pattern-actions button:hover {
+    background: #f3f4f6;
+}
+
+/* Icon-only compact buttons */
+#new-pattern::before {
+    content: "+";
+    font-size: 14px;
+    line-height: 1;
+}
+
+#copy-pattern::before {
+    content: "⧉";
+    font-size: 14px;
+    line-height: 1;
+}
+
+#delete-pattern::before {
+    content: "✕";
+    font-size: 14px;
+    line-height: 1;
+}
+
+/* Hide long text inside compact buttons without affecting accessibility too much */
+.pattern-actions button {
+    font-size: 0;
+}
+
+#new-pattern,
+#copy-pattern,
+#delete-pattern {
+    background: transparent;
+    color: #111827;
+    border-color: #e5e7eb;
+}
+
+h1 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+/* App shell */
+.app-header {
+    margin: 28px auto 16px auto;
+}
+
+.app-title {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.app-subtitle {
+    margin: 8px 0 0 0;
+    color: #475569;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto 40px auto;
+    padding: 0 20px;
+}
+
+.machine-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media (min-width: 900px) {
+    .machine-grid {
+        grid-template-columns: 1fr 2fr;
+        align-items: start;
+    }
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.panel {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 16px rgba(2, 6, 23, 0.05);
+}
+
+.panel-title {
+    text-align: left;
+    margin: 4px 0 12px 0;
+    font-size: 1.1rem;
+    color: #0f172a;
+}
+
+.hint {
+    margin: 10px 0 16px 0;
+    color: #6b7280;
+}
+
+#drum-machine {
+    display: inline-block;
+    background: #ffffff;
+    padding: 20px 24px;
+    border-radius: 14px;
+    box-shadow: none;
+    border: 1px solid #e5e7eb;
+}
+
+.pad-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.drum-pad {
+    background: #f5f5f5;
+    color: #111827;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 1.1em;
+    padding: 18px 26px;
+    margin: 0 8px;
+    cursor: pointer;
+    transition: background 0.12s, transform 0.08s;
+    outline: none;
+}
+
+.drum-pad:active,
+.drum-pad.active {
+    background: #111827;
+    color: #ffffff;
+    border-color: #111827;
+    transform: scale(1.02);
+}
+
+#volume-controls {
+    margin: 16px 0 18px 0;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.volume-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0;
+    padding: 10px 8px 12px 8px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+}
+
+.volume-label {
+    width: auto;
+    text-align: center;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+    order: 3;
+}
+
+.volume-slider {
+    width: 16px;
+    height: 140px;
+    accent-color: #111827;
+    order: 1;
+    appearance: slider-vertical;
+    -webkit-appearance: slider-vertical;
+}
+
+.volume-value {
+    width: auto;
+    display: inline-block;
+    margin: 0;
+    font-size: 0.85em;
+    color: #6b7280;
+    order: 2;
+}
+
+#sequencer {
+    margin: 24px 0 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sequencer-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.sequencer-label {
+    width: 60px;
+    text-align: right;
+    margin-right: 14px;
+    font-size: 1em;
+    letter-spacing: 1px;
+}
+
+.steps {
+    display: flex;
+    gap: 4px;
+}
+
+.step {
+    width: 28px;
+    height: 28px;
+    background: #fafafa;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s, box-shadow 0.12s, transform 0.06s;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+/* Grouping gap after every 4th step (TR-style) */
+.step:nth-child(4n) {
+    margin-right: 8px;
+}
+
+.step.active {
+    background: #fef3c7;
+    border-color: #f59e0b;
+    box-shadow: inset 0 0 0 2px #f59e0b;
+}
+
+.step.current {
+    border-color: #0ea5e9;
+    box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.35);
+}
+
+/* LED indicator (top-center) */
+.step::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    background: #d1d5db;
+}
+
+.step.active::before {
+    background: #f59e0b;
+}
+
+.step.current::before {
+    background: #0ea5e9;
+}
+
+/* Small step number (bottom-right) */
+.step::after {
+    position: absolute;
+    bottom: 3px;
+    right: 4px;
+    font-size: 9px;
+    color: #9ca3af;
+}
+
+.steps .step:nth-child(1)::after { content: "1"; }
+.steps .step:nth-child(2)::after { content: "2"; }
+.steps .step:nth-child(3)::after { content: "3"; }
+.steps .step:nth-child(4)::after { content: "4"; }
+.steps .step:nth-child(5)::after { content: "5"; }
+.steps .step:nth-child(6)::after { content: "6"; }
+.steps .step:nth-child(7)::after { content: "7"; }
+.steps .step:nth-child(8)::after { content: "8"; }
+.steps .step:nth-child(9)::after { content: "9"; }
+.steps .step:nth-child(10)::after { content: "10"; }
+.steps .step:nth-child(11)::after { content: "11"; }
+.steps .step:nth-child(12)::after { content: "12"; }
+.steps .step:nth-child(13)::after { content: "13"; }
+.steps .step:nth-child(14)::after { content: "14"; }
+.steps .step:nth-child(15)::after { content: "15"; }
+.steps .step:nth-child(16)::after { content: "16"; }
+
+/* Accent the first beat of each bar */
+.steps .step:nth-child(1),
+.steps .step:nth-child(5),
+.steps .step:nth-child(9),
+.steps .step:nth-child(13) {
+    background: #f3f4f6;
+}
+
+.controls {
+    margin: 18px 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+#play-btn {
+    font-size: 1em;
+    background: transparent;
+    color: #111827;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 8px 18px;
+    cursor: pointer;
+    transition: background 0.12s;
+    outline: none;
+}
+
+#play-btn:active {
+    background: #111827;
+    color: #ffffff;
+    border-color: #111827;
+}
+
+#tempo {
+    vertical-align: middle;
+}

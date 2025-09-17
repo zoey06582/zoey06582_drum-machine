@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Drum Machine with Sequencer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="app-header">
+        <h1 class="app-title">Drum Machine</h1>
+        <p class="app-subtitle">16-step sequencer • finger drumming • pattern chaining</p>
+    </header>
+    <div class="container">
+        <div id="drum-machine" class="machine-grid">
+            <section class="panel left-column">
+                <h2 class="panel-title">Pads</h2>
+                <div class="pad-row">
+                    <button class="drum-pad" data-sound="kick" id="kick">Kick</button>
+                    <button class="drum-pad" data-sound="snare" id="snare">Snare</button>
+                    <button class="drum-pad" data-sound="hihat" id="hihat">Hi-Hat</button>
+                    <button class="drum-pad" data-sound="clap" id="clap">Clap</button>
+                    <button class="drum-pad" data-sound="tom" id="tom">Tom</button>
+                    <button class="drum-pad" data-sound="cymbal" id="cymbal">Cymbal</button>
+                </div>
+                <p class="hint">Tip: Use keys Q, W, E, A, S, D</p>
+            </section>
+
+            <section class="panel right-column">
+                <h2 class="panel-title">Patterns</h2>
+                <div id="pattern-controls">
+                    <!-- Pattern controls will be rendered here -->
+                </div>
+
+                <h2 class="panel-title">Sequencer</h2>
+                <div id="sequencer">
+                    <!-- Sequencer rows will be rendered here -->
+                </div>
+
+                <div class="controls transport">
+                    <button id="play-btn">Play</button>
+                    <button id="chain-btn">Chain Mode: Off</button>
+                    <label for="tempo">Tempo: <span id="tempo-value">120</span>BPM</label>
+                    <input type="range" id="tempo" min="60" max="180" value="120">
+                </div>
+            </section>
+            <section class="panel full-width">
+                <h2 class="panel-title">Mixer</h2>
+                <div id="volume-controls">
+                    <!-- Volume sliders will be rendered here -->
+                </div>
+            </section>
+        </div>
+    </div>
+    <audio id="audio-kick" src="sounds/kick.wav"></audio>
+    <audio id="audio-snare" src="sounds/snare.wav"></audio>
+    <audio id="audio-hihat" src="sounds/hihat.wav"></audio>
+    <audio id="audio-clap" src="sounds/clap.wav"></audio>
+    <audio id="audio-tom" src="sounds/tom.wav"></audio>
+    <audio id="audio-cymbal" src="sounds/cymbal.wav"></audio>
+    <script src="app.js"></script>
+</body>
+</html>
